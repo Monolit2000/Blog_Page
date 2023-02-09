@@ -18,11 +18,11 @@ namespace Blog_Page.Controllers
         [HttpGet]
         public async Task<IActionResult> CreatePost()
         {
-            return View();
+             return PartialView("CreatePostView");
         }
 
         [HttpPost]
-        public  async Task<IActionResult> CreatePost(int Id, string title , string content )
+        public  async Task<IActionResult> CreatePost( string title, string content)
         {
             await _blogPageContext.BlogPosts.AddAsync(new BlogPost
             {
@@ -30,14 +30,10 @@ namespace Blog_Page.Controllers
                 Title = title,
                 Content = content,
                 Date = DateTime.Now,
-                Author = User.Identity.Name
-
-
-        });
-
-
-
-            return View();
+                Author = "Ded",
+            });
+            await _blogPageContext.SaveChangesAsync();
+            return RedirectToAction("Index","Home");
         }
 
 

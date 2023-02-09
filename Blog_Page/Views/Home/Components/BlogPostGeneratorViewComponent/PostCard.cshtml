@@ -1,0 +1,32 @@
+﻿
+  @model IEnumerable<Blog_Page.Models.BlogPost>
+
+      @foreach(var item in Model )
+{
+    
+
+
+
+    <div class="container">
+        <div class="card">
+        <div class="card__header">
+            @* <img src="https://source.unsplash.com/600x400/?computer" alt="card__image" class="card__image" width="600">*@
+        </div>
+        <div class="card__body">
+            <span class="tag tag-blue">@item.Title</span>
+            <h4>What's new in 2022 Tech</h4>
+            <p>@item.Content</p>
+        </div>
+        <div class="card__footer">
+            <div class="user">
+           @* <img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">*@
+            <div class="user__info">
+                <h5>@item.Author</h5>
+                <small>@item.Date</small>
+            </div>
+            </div>
+        </div>
+        </div>
+       
+}
+

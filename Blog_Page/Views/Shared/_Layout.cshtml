@@ -35,6 +35,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Registration</a>
                          </li>
 
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="BlogPost" asp-action="CreatePost">CreatePost</a>
+                         </li>
+
 
 
 
@@ -48,6 +52,9 @@
             @RenderBody()
         </main>
     </div>
+
+
+    @await Component.InvokeAsync("BlogPostGenerator")
 
     <footer class="border-top footer text-muted">
         <div class="container">

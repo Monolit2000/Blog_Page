@@ -5,7 +5,6 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Blog_Page
 build_property.RootNamespace = Blog_Page
@@ -16,8 +15,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\DIO\Documents\GitHub\Blog_Page\Blog_Page
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/CreatePostView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVQb3N0Vmlldy5jc2h0bWw=
+[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/BlogPost/CreatePostView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcQ3JlYXRlUG9zdFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/Components/BlogPostGeneratorViewComponent/PostCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb21wb25lbnRzXEJsb2dQb3N0R2VuZXJhdG9yVmlld0NvbXBvbmVudFxQb3N0Q2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/Index.cshtml]
