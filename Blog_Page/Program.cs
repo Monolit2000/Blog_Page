@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-string connectionBlogPageDB = builder.Configuration.GetConnectionString("DefaultConnectionBlog");
+string connectionBlogPageDB = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<BlogPageContext>(options => options.UseSqlServer(connectionBlogPageDB));
 
