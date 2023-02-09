@@ -1,83 +1,95 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Blog_Page.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog_Page.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: AccountController
-        public ActionResult Index()
+        const string cookieString = "Cookies";
+        private readonly BlogPageContext _blogPageContext;
+        public AccountController(BlogPageContext blogPageContext)
         {
-            return View();
+            _blogPageContext = blogPageContext;
         }
 
-        // GET: AccountController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public IActionResult Registration()
         {
-            return View();
+            return PartialView("Regestration");
         }
-
-        // GET: AccountController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AccountController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Registration(BlogUser blogUser)
         {
-            try
+            
+            var userr = await _blogPageContext.BlogUsers.AddAsync(new BlogUser
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                Id = Guid.NewGuid().ToString(),
+                Email = blogUser.Email,
+                Password = blogUser.Password
+        });
+            await _blogPageContext.SaveChangesAsync();
+
+
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, blogUser.Email),
+                    new Claim("role", "User"),
+                };
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, cookieString);
+            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+            await HttpContext.SignInAsync(cookieString,claimsPrincipal);
+
+            return RedirectToAction("Index", "Home");
+           
         }
 
-        // GET: AccountController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public IActionResult SignInAuthorization()
         {
-            return View();
+            return PartialView("SignInAuthorization");
+
+
         }
 
-        // POST: AccountController/Edit/5
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> SignInAuthorization(BlogUser blogUser)
         {
-            try
+
+
+            var _httpcontext = HttpContext;
+            //await _CustomCookiAddService.customCookiAdd("Barier", _httpcontext);
+
+            if (_httpcontext.Request.Cookies.ContainsKey("Barier"))
             {
-                return RedirectToAction(nameof(Index));
+                _httpcontext.Response.Cookies.Delete("Barier");
             }
-            catch
+
+            var userInDB = await _blogPageContext.BlogUsers.FirstOrDefaultAsync(c => c.Email == blogUser.Email && c.Password == blogUser.Password);
+            if (userInDB != null)
             {
-                return View();
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, blogUser.Email),
+                    new Claim("role","User"),
+                };
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(cookieString, claimsPrincipal, new AuthenticationProperties()
+                {
+                    IsPersistent = true,
+                });
+
+                return RedirectToAction("Index", "Home");
             }
+
+            else return RedirectToAction("Registration");
         }
 
-        // GET: AccountController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AccountController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

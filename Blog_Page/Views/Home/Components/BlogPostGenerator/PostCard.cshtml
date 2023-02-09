@@ -23,8 +23,18 @@
             <div class="user__info">
                 <h5>@item.Author</h5>
                 <small>@item.Date</small>
+                <form>
+                     <button formmethod="post" formaction="/BlogPost/PostPage" type="submit" name="Id" value="@item.Id" class="goto shap">-></button>
+                </form>
+                <a>comment</a>
+                <form>
+                     <button formmethod="post" formaction="/BlogPost/LikeSystem" type="submit" name="Id" value="@item.Id" class="goto shap">Like</button>
+                </form>
+                <a>Like</a>
+                <p> @item.LikeCount </p>
             </div>
             </div>
+        </div>
         </div>
         </div>
        

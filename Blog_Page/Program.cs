@@ -2,19 +2,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Blog_Page.Models;
 var builder = WebApplication.CreateBuilder(args);
-
+const string cookieString = "Cookies";
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 
+//string DbconnectionBlogPage = builder.Configuration.GetConnectionString("DefoltConnection");
 
-string DbconnectionBlogPage = builder.Configuration.GetConnectionString("DefaultConnectionBlog");
+builder.Services.AddDbContext<BlogPageContext>(options => 
+     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDbContext<BlogPageContext>(options => options.UseSqlServer(DbconnectionBlogPage));
 
-
-builder.Services.AddAuthentication()
-   .AddCookie("", options =>
+builder.Services.AddAuthentication(cookieString)
+   .AddCookie(cookieString, options =>
    {
        options.LoginPath = "/";
        options.AccessDeniedPath = "/";
@@ -58,6 +58,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",

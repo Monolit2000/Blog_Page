@@ -1,11 +1,14 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
+
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+
 namespace Blog_Page.Models
 {
     public class BlogUser
     {
-
-        public int UserId { get; set; }
+        [Key]
+        public string? Id { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
 
@@ -13,10 +16,10 @@ namespace Blog_Page.Models
 
         public ICollection<BlogPost> FavoritePosts { get; set; }
 
-        public BlogUser()
-        {
-            FavoritePosts = new List<BlogPost>();   
-        }
+        //public BlogUser()
+        //{
+        //    Id = Guid.NewGuid().ToString();   
+        //}
 
 
     }

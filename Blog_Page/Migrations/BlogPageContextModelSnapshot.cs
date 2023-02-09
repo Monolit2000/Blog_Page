@@ -31,6 +31,9 @@ namespace BlogPage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BlogUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -42,13 +45,34 @@ namespace BlogPage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("LikeCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BlogUserId");
+
                     b.ToTable("BlogPosts");
+                });
+
+            modelBuilder.Entity("Blog_Page.Models.BlogUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BlogUsers");
                 });
 
             modelBuilder.Entity("Blog_Page.Models.Comment", b =>
@@ -69,6 +93,10 @@ namespace BlogPage.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PostId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -82,28 +110,27 @@ namespace BlogPage.Migrations
 
             modelBuilder.Entity("Blog_Page.Models.FavoritePost", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BlogPostId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BlogPostId1")
-                        .IsRequired()
+                    b.Property<string>("BlogPostId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BlogPostId1");
+                    b.HasIndex("BlogPostId");
 
                     b.ToTable("FavoritePosts");
+                });
+
+            modelBuilder.Entity("Blog_Page.Models.BlogPost", b =>
+                {
+                    b.HasOne("Blog_Page.Models.BlogUser", null)
+                        .WithMany("FavoritePosts")
+                        .HasForeignKey("BlogUserId");
                 });
 
             modelBuilder.Entity("Blog_Page.Models.Comment", b =>
@@ -117,9 +144,7 @@ namespace BlogPage.Migrations
                 {
                     b.HasOne("Blog_Page.Models.BlogPost", "BlogPost")
                         .WithMany()
-                        .HasForeignKey("BlogPostId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogPostId");
 
                     b.Navigation("BlogPost");
                 });
@@ -127,6 +152,11 @@ namespace BlogPage.Migrations
             modelBuilder.Entity("Blog_Page.Models.BlogPost", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("Blog_Page.Models.BlogUser", b =>
+                {
+                    b.Navigation("FavoritePosts");
                 });
 #pragma warning restore 612, 618
         }

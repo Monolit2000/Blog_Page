@@ -1,0 +1,22 @@
+﻿
+@{
+
+}
+@model Blog_Page.Models.BlogPost
+
+    <h1>@Model.Title</h1>  <h1> @Model.Author </h1>
+ 
+  <hr>
+  <main>
+    <p>@Model.Content</p>
+  </main>
+  <hr>
+  <footer>
+    <h3>Comments</h3>
+    <form>
+      <textarea rows="4" cols="50" placeholder="Leave a comment"></textarea>
+      <br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </footer>
+

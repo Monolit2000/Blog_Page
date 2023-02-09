@@ -15,12 +15,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\DIO\Documents\GitHub\Blog_Page\Blog_Page
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Account/Regestration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdlc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Account/SignInAuthorization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduSW5BdXRob3JpemF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/BlogPost/CreatePostView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcQ3JlYXRlUG9zdFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/Components/BlogPostGeneratorViewComponent/PostCard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb21wb25lbnRzXEJsb2dQb3N0R2VuZXJhdG9yVmlld0NvbXBvbmVudFxQb3N0Q2FyZC5jc2h0bWw=
+[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/BlogPost/PostPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcUG9zdFBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/Components/BlogPostGenerator/PostCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb21wb25lbnRzXEJsb2dQb3N0R2VuZXJhdG9yXFBvc3RDYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/Index.cshtml]
