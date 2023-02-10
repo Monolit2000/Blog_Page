@@ -4,6 +4,7 @@ using Blog_Page.Models;
 using Microsoft.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Blog_Page.ViewModel;
 
 namespace Blog_Page.Controllers
 {
@@ -40,12 +41,20 @@ namespace Blog_Page.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> PostPage(string Id)
         {
-            var Post = _blogPageContext.BlogPosts.FirstOrDefault(c => c.Id == Id);
-            Post.LikeCount++;
-            return PartialView("PostPage", Post);
+            var Post = await _blogPageContext.BlogPosts.FirstOrDefaultAsync(c => c.Id == Id);
+            var comments = await _blogPageContext.Comments.Where(c => c.PostId == Id).ToListAsync();
+            BlogPageComment blogPageComment = new BlogPageComment
+            {
+
+                blogPost = Post,
+                comments = comments
+
+            };
+
+            return PartialView("PostPage", blogPageComment);
         }
 
         [HttpPost]
@@ -62,7 +71,7 @@ namespace Blog_Page.Controllers
                 await _blogPageContext.FavoritePosts.AddAsync(new FavoritePost
                 {
 
-                    Id = Post.Id,
+                    Id = Guid.NewGuid().ToString(),
                     BlogPostId = Id,
                     UserId = User.Identity.Name
 
@@ -84,19 +93,51 @@ namespace Blog_Page.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CommentSystem(string Id)
+        public async Task<IActionResult> PostPage(string Id, string Text)
         {
 
-            var newComment = new Comment
-            {
-                Id = Guid.NewGuid().ToString(),
+            
 
-            };
-            await _blogPageContext.Comments.AddAsync( new  );
 
             var Post = _blogPageContext.BlogPosts.FirstOrDefault(c => c.Id == Id);
-            return PartialView("PostPage", Post);
+            if (Post != null)
+            {
 
+
+                var newComment = new Comment
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    PostId = Id,
+                    Author = User.Identity.Name,
+                    Text = Text,
+                    Date = DateTime.Now
+                };
+
+                await _blogPageContext.Comments.AddAsync(newComment);
+
+                //Post.Comments.Add(newComment);
+                
+            }
+
+             var comments = await _blogPageContext.Comments.Where(c => c.PostId == Id).ToListAsync();
+
+            await _blogPageContext.SaveChangesAsync();
+
+            BlogPageComment blogPageComment = new BlogPageComment
+            {
+
+                blogPost = Post,
+                comments = comments
+
+            };
+
+            foreach(var item in comments)
+            {
+                Console.WriteLine(item.Text);
+            }
+
+
+            return PartialView("PostPage", blogPageComment);
         }
     }
 }

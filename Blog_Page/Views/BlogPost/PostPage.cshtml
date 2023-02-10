@@ -1,22 +1,36 @@
-﻿
+﻿@using Blog_Page.ViewModel
 @{
 
 }
-@model Blog_Page.Models.BlogPost
+@*@model Blog_Page.Models.BlogPost*@
+@model BlogPageComment
 
-    <h1>@Model.Title</h1>  <h1> @Model.Author </h1>
+
+    <h1>@Model.blogPost.Comments</h1>  <h1> @Model.blogPost.Author </h1>
  
   <hr>
   <main>
-    <p>@Model.Content</p>
+    <p>@Model.blogPost.Content</p>
   </main>
   <hr>
   <footer>
-    <h3>Comments</h3>
-    <form>
-      <textarea rows="4" cols="50" placeholder="Leave a comment"></textarea>
+    <h3>Comments:</h3>
+   
+        @foreach (var comment in Model.comments)
+        {
+            <h4>@comment.Author </h4>
+            <h5>@comment.Date</h5>
+            <p> @comment.Text </p>
+        }
+
+    
+
+
+    <form asp-controller="BlogPost" asp-action="PostPage"  method="post"  >
+      <textarea rows="4" cols="50" name = "Text" placeholder="Leave a comment"></textarea>
       <br><br>
-      <input type="submit" value="Submit">
+      <input type="hidden" name="Id" value="@Model.blogPost.Id">
+      <input type="submit"  value="Submit" >
     </form>
   </footer>
 
