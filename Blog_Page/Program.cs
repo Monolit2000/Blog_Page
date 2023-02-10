@@ -32,13 +32,13 @@ builder.Services.AddAuthorization(opts =>
     opts.AddPolicy("Admin", policy =>
     {
         policy.RequireAuthenticatedUser()
-       .AddAuthenticationSchemes()
+       .AddAuthenticationSchemes(cookieString)
        .RequireClaim("role", "User");
     });
     opts.AddPolicy("Anonimus", policy =>
     {
         policy.RequireAuthenticatedUser()
-       .AddAuthenticationSchemes()
+       .AddAuthenticationSchemes(cookieString)
        .RequireClaim("Anonimrole", "AnonimUser");
     });
 });

@@ -19,13 +19,14 @@ namespace Blog_Page.Controllers
         // GET: BlogPostController
 
         [HttpGet]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> CreatePost()
         {
             return PartialView("CreatePostView");
         }
 
         [HttpPost]
-        //[Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> CreatePost(string title, string content)
         {
             await _blogPageContext.BlogPosts.AddAsync(new BlogPost
@@ -58,6 +59,7 @@ namespace Blog_Page.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> LikeSystem(string Id)
         {
             //var Post = new BlogPost
@@ -93,6 +95,7 @@ namespace Blog_Page.Controllers
 
 
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> PostPage(string Id, string Text)
         {
 

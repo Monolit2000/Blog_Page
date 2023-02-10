@@ -25,13 +25,13 @@ namespace Blog_Page.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(BlogUser blogUser)
         {
-            
+
             var userr = await _blogPageContext.BlogUsers.AddAsync(new BlogUser
             {
                 Id = Guid.NewGuid().ToString(),
                 Email = blogUser.Email,
                 Password = blogUser.Password
-        });
+            });
             await _blogPageContext.SaveChangesAsync();
 
 
@@ -42,10 +42,10 @@ namespace Blog_Page.Controllers
                 };
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, cookieString);
             ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-            await HttpContext.SignInAsync(cookieString,claimsPrincipal);
+            await HttpContext.SignInAsync(cookieString, claimsPrincipal);
 
             return RedirectToAction("Index", "Home");
-           
+
         }
 
         [HttpGet]
@@ -89,6 +89,13 @@ namespace Blog_Page.Controllers
             }
 
             else return RedirectToAction("Registration");
+        }
+       
+        public async Task<IActionResult> SignOutAuthorization()
+        {
+            await HttpContext.SignOutAsync(cookieString);
+        
+            return RedirectToAction("Index", "Home");
         }
 
     }
