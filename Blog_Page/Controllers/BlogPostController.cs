@@ -59,7 +59,7 @@ namespace Blog_Page.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Default")]
         public async Task<IActionResult> LikeSystem(string Id)
         {
             //var Post = new BlogPost
@@ -95,7 +95,7 @@ namespace Blog_Page.Controllers
 
 
         [HttpPost]
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Default")]
         public async Task<IActionResult> PostPage(string Id, string Text)
         {
 

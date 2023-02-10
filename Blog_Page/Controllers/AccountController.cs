@@ -5,6 +5,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blog_Page.Controllers
 {
@@ -30,7 +31,8 @@ namespace Blog_Page.Controllers
             {
                 Id = Guid.NewGuid().ToString(),
                 Email = blogUser.Email,
-                Password = blogUser.Password
+                Password = blogUser.Password,
+                Role = "Default"
             });
             await _blogPageContext.SaveChangesAsync();
 
@@ -38,7 +40,7 @@ namespace Blog_Page.Controllers
             var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, blogUser.Email),
-                    new Claim("role", "User"),
+                    new Claim("role", "Default"),
                 };
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, cookieString);
             ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
@@ -65,10 +67,6 @@ namespace Blog_Page.Controllers
             var _httpcontext = HttpContext;
             //await _CustomCookiAddService.customCookiAdd("Barier", _httpcontext);
 
-            if (_httpcontext.Request.Cookies.ContainsKey("Barier"))
-            {
-                _httpcontext.Response.Cookies.Delete("Barier");
-            }
 
             var userInDB = await _blogPageContext.BlogUsers.FirstOrDefaultAsync(c => c.Email == blogUser.Email && c.Password == blogUser.Password);
             if (userInDB != null)
@@ -76,7 +74,7 @@ namespace Blog_Page.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, blogUser.Email),
-                    new Claim("role","User"),
+                    new Claim("role",userInDB.Role),
                 };
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
@@ -90,13 +88,37 @@ namespace Blog_Page.Controllers
 
             else return RedirectToAction("Registration");
         }
-       
+
         public async Task<IActionResult> SignOutAuthorization()
         {
             await HttpContext.SignOutAsync(cookieString);
-        
+
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        [Authorize(Policy = "Admin")]
+        public async Task<IActionResult> AddAdmin()
+        {
+
+            return PartialView("AddAdmin");
+
+        }
+
+        [HttpPost]
+        [Authorize(Policy = "Admin")]
+        public async Task<IActionResult> AddAdmin(BlogUser blogUser)
+        {
+
+            var userr = await _blogPageContext.BlogUsers.AddAsync(new BlogUser
+            {
+                Id = Guid.NewGuid().ToString(),
+                Email = blogUser.Email,
+                Password = blogUser.Password,
+                Role = "User"
+            });
+            await _blogPageContext.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

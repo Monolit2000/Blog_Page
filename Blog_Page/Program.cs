@@ -35,11 +35,11 @@ builder.Services.AddAuthorization(opts =>
        .AddAuthenticationSchemes(cookieString)
        .RequireClaim("role", "User");
     });
-    opts.AddPolicy("Anonimus", policy =>
+    opts.AddPolicy("Default", policy =>
     {
         policy.RequireAuthenticatedUser()
        .AddAuthenticationSchemes(cookieString)
-       .RequireClaim("Anonimrole", "AnonimUser");
+       .RequireClaim("role", "Default");
     });
 });
 var app = builder.Build();

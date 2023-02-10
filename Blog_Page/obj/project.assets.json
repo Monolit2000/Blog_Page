@@ -3307,11 +3307,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DIO\\Documents\\GitHub\\Blog_Page\\Blog_Page\\Blog_Page.csproj",
+      "projectUniqueName": "C:\\Users\\DIO\\Documents\\GitHub\\Blog_PageTest\\Blog_Page\\Blog_Page.csproj",
       "projectName": "Blog_Page",
-      "projectPath": "C:\\Users\\DIO\\Documents\\GitHub\\Blog_Page\\Blog_Page\\Blog_Page.csproj",
+      "projectPath": "C:\\Users\\DIO\\Documents\\GitHub\\Blog_PageTest\\Blog_Page\\Blog_Page.csproj",
       "packagesPath": "C:\\Users\\DIO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DIO\\Documents\\GitHub\\Blog_Page\\Blog_Page\\obj\\",
+      "outputPath": "C:\\Users\\DIO\\Documents\\GitHub\\Blog_PageTest\\Blog_Page\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

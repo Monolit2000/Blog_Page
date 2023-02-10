@@ -8,57 +8,61 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Blog_Page
 build_property.RootNamespace = Blog_Page
-build_property.ProjectDir = C:\Users\DIO\Documents\GitHub\Blog_Page\Blog_Page\
+build_property.ProjectDir = C:\Users\DIO\Documents\GitHub\Blog_PageTest\Blog_Page\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\DIO\Documents\GitHub\Blog_Page\Blog_Page
+build_property.MSBuildProjectDirectory = C:\Users\DIO\Documents\GitHub\Blog_PageTest\Blog_Page
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Account/Regestration.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Account/AddAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBZGRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Account/Regestration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdlc3RyYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Account/SignInAuthorization.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Account/SignInAuthorization.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduSW5BdXRob3JpemF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/BlogPost/CreatePostView.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/BlogPost/CreatePostView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcQ3JlYXRlUG9zdFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/BlogPost/PostPage.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/BlogPost/PostPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1Bvc3RcUG9zdFBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/Components/BlogPostGenerator/PostCard.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Home/Components/BlogPostGenerator/PostCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb21wb25lbnRzXEJsb2dQb3N0R2VuZXJhdG9yXFBvc3RDYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/Index.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Home/Privacy.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Shared/Error.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/_ViewImports.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/_ViewStart.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/DIO/Documents/GitHub/Blog_Page/Blog_Page/Views/Shared/_Layout.cshtml]
+[C:/Users/DIO/Documents/GitHub/Blog_PageTest/Blog_Page/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-mu4m05fm1d

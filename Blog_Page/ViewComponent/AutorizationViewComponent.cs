@@ -28,7 +28,7 @@ namespace WebApplication1.ViewComponent
             var name = user.Name;
             var AuthenticationType = user.AuthenticationType;
             var role = HttpContext.User.FindFirst("role");
-            var SignOut = new HtmlContentViewComponentResult(new HtmlString($"<a class=\"navitem\" href=\"/Account/SignOutAuthorization\"> {name}-{role} SingOut </a>"));
+            var SignOut = new HtmlContentViewComponentResult(new HtmlString($"<a class=\"navitem\" href=\"/Account/SignOutAuthorization\"> {name}-{role} SingOut</a>        <a class=\"navitem\" href=\"/Account/AddAdmin\">AddAdmin</a>"));
             var SingIn = new HtmlContentViewComponentResult(new HtmlString($"<a class=\"navitem\" href=\"/Account/SignInAuthorization\">Login</a>  <a class=\"navitem\" href=\"/Account/Registration\">Registration</a>"));
 
             return user.IsAuthenticated ? SignOut : SingIn;
