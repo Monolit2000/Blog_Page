@@ -1,0 +1,15 @@
+﻿
+
+
+@model Blog_Page.Models.Comment
+
+
+<h3>Replies for @Model.Author</h3>
+<h4> Text: @Model.Text </h4>
+<form asp-controller="BlogPost" asp-action="RepliesCreate"  method="post"  >
+      <textarea rows="4" cols="50" name = "Text" placeholder="Leave a comment"></textarea>
+      <br><br>
+      <input type="hidden" name="Id" value="@Model.Id">
+      <input type="hidden" name="repliesId" value="@Model.Id">
+      <input type="submit"  value="Submit" >
+    </form>

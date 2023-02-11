@@ -42,21 +42,7 @@ namespace Blog_Page.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
-        public async Task<IActionResult> PostPage(string Id)
-        {
-            var Post = await _blogPageContext.BlogPosts.FirstOrDefaultAsync(c => c.Id == Id);
-            var comments = await _blogPageContext.Comments.Where(c => c.PostId == Id).ToListAsync();
-            BlogPageComment blogPageComment = new BlogPageComment
-            {
-
-                blogPost = Post,
-                comments = comments
-
-            };
-
-            return PartialView("PostPage", blogPageComment);
-        }
+       
 
         [HttpPost]
         [Authorize(Policy = "Default")]
@@ -94,19 +80,34 @@ namespace Blog_Page.Controllers
         }
 
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> PostPage(string Id)
+        {
+            var Post = await _blogPageContext.BlogPosts.FirstOrDefaultAsync(c => c.Id == Id);
+            var comments = await _blogPageContext.Comments.Where(c => c.PostId == Id).ToListAsync();
+            BlogPageComment blogPageComment = new BlogPageComment
+            {
+
+                blogPost = Post,
+                comments = comments
+
+            };
+
+            return PartialView("PostPage", blogPageComment);
+        }
+
+
+
         [HttpPost]
-        [Authorize(Policy = "Default")]
+        // [Authorize(Policy = "Default")]
         public async Task<IActionResult> PostPage(string Id, string Text)
         {
-
-            
-
 
             var Post = _blogPageContext.BlogPosts.FirstOrDefault(c => c.Id == Id);
             if (Post != null)
             {
-
-
                 var newComment = new Comment
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -117,12 +118,9 @@ namespace Blog_Page.Controllers
                 };
 
                 await _blogPageContext.Comments.AddAsync(newComment);
-
-                //Post.Comments.Add(newComment);
-                
             }
 
-             var comments = await _blogPageContext.Comments.Where(c => c.PostId == Id).ToListAsync();
+            var comments = await _blogPageContext.Comments.Where(c => c.PostId == Id).ToListAsync();
 
             await _blogPageContext.SaveChangesAsync();
 
@@ -134,14 +132,64 @@ namespace Blog_Page.Controllers
 
             };
 
-            foreach(var item in comments)
-            {
-                Console.WriteLine(item.Text);
-            }
-
-
             return PartialView("PostPage", blogPageComment);
         }
+
+
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> RepliesCreate(string commentId)
+        {
+
+            var comments = await _blogPageContext.Comments.FirstOrDefaultAsync(c => c.Id == commentId);
+            //var Post = await _blogPageContext.BlogPosts.FirstOrDefaultAsync(c => c.Id == comments.PostId);
+            //BlogPageComment blogPageComment = new BlogPageComment
+            //{
+
+            //    blogPost = Post,
+           
+
+            //};
+
+            return PartialView("RepliesCommetnViewCreate",comments);
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> RepliesCreate(string Id, string Text,string repliesId)
+        {
+            var Post = _blogPageContext.BlogPosts.FirstOrDefault(c => c.Id == Id);
+            var comments = await _blogPageContext.Comments.Where(c => c.PostId == Id).ToListAsync();
+            var comment = await _blogPageContext.Comments.FirstOrDefaultAsync(c => c.PostId == Id);
+            //var replise = await _blogPageContext.Comments.Where(w => w. )
+            BlogPageComment blogPageComment = new BlogPageComment
+            {
+
+                blogPost = Post,
+                comments = comments
+
+            };
+
+            var newComment = new Comment
+            {
+                Id = Guid.NewGuid().ToString(),
+                PostId = Id,
+                Author = User.Identity.Name,
+                Text = Text,
+                Date = DateTime.Now,
+                repliesId = repliesId
+            };
+            await _blogPageContext.Comments.AddAsync(newComment);
+
+            await _blogPageContext.SaveChangesAsync();
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
 

@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Blog_Page.Models.Comment>
+
+ @foreach (var comment in Model)
+        {
+          
+          <div style="margin: 40px;">
+  
+
+            <h3>@comment.Author </h3>
+            <h5>@comment.Date</h5>
+            <p> @comment.Text </p>
+              <form>
+                 <input type="hidden" name="Id" value="@comment.PostId">
+                 <input type="hidden" name="repliesId" value="@comment.Id">
+                 <input type="hidden" name="Author" value="@comment.Author">
+                 <button formmethod="get" formaction="/BlogPost/RepliesCreate" type="submit" name="commentId" value="@comment.Id" class="goto shap">ответить</button>
+              </form>
+               @await Component.InvokeAsync("RepliesGenerator",new {repliesId = @comment.Id})
+          </div>
+        }

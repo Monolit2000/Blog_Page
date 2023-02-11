@@ -26,7 +26,10 @@ namespace Blog_Page.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(BlogUser blogUser)
         {
-
+            if (_blogPageContext.BlogUsers.Any(c => c.Email == blogUser.Email))
+            {
+                return Content($" {blogUser.Email} Вже зареєстрований ;) ");
+            }
             var userr = await _blogPageContext.BlogUsers.AddAsync(new BlogUser
             {
                 Id = Guid.NewGuid().ToString(),

@@ -16,12 +16,21 @@
   <footer>
     <h3>Comments:</h3>
    
-        @foreach (var comment in Model.comments)
+
+
+       @await Component.InvokeAsync("PageContentGenerator",new {postid = Model.blogPost.Id})
+
+        @*@foreach (var comment in Model.comments)
         {
             <h4>@comment.Author </h4>
             <h5>@comment.Date</h5>
             <p> @comment.Text </p>
-        }
+                <form>
+                 <input type="hidden" name="Id" value="@Model.blogPost.Id">
+                 <input type="hidden" name="Author" value="@comment.Author">
+                 <button formmethod="post" formaction="/BlogPost/Replies" type="submit" name="commentId" value="@comment.Id" class="goto shap">ответить</button>
+              </form>
+        }*@
 
     
 

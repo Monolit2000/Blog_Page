@@ -4,6 +4,7 @@ using Blog_Page.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogPage.Migrations
 {
     [DbContext(typeof(BlogPageContext))]
-    partial class BlogPageContextModelSnapshot : ModelSnapshot
+    [Migration("20230210184202_mssql.local_migration_339")]
+    partial class mssqllocalmigration339
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,6 +93,9 @@ namespace BlogPage.Migrations
                     b.Property<string>("BlogPostId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("CommentId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -101,12 +107,11 @@ namespace BlogPage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("repliesId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BlogPostId");
+
+                    b.HasIndex("CommentId");
 
                     b.ToTable("Comments");
                 });
@@ -141,6 +146,10 @@ namespace BlogPage.Migrations
                     b.HasOne("Blog_Page.Models.BlogPost", null)
                         .WithMany("Comments")
                         .HasForeignKey("BlogPostId");
+
+                    b.HasOne("Blog_Page.Models.Comment", null)
+                        .WithMany("Replies")
+                        .HasForeignKey("CommentId");
                 });
 
             modelBuilder.Entity("Blog_Page.Models.FavoritePost", b =>
@@ -160,6 +169,11 @@ namespace BlogPage.Migrations
             modelBuilder.Entity("Blog_Page.Models.BlogUser", b =>
                 {
                     b.Navigation("FavoritePosts");
+                });
+
+            modelBuilder.Entity("Blog_Page.Models.Comment", b =>
+                {
+                    b.Navigation("Replies");
                 });
 #pragma warning restore 612, 618
         }

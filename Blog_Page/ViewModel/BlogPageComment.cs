@@ -5,6 +5,7 @@ namespace Blog_Page.ViewModel
     {
         public BlogPost blogPost { get; set; } 
         public IEnumerable<Comment> comments { get; set; } = new List<Comment>();
+        public IEnumerable<Comment> Replies { get; set; } = new List<Comment>();
 
 
 

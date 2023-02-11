@@ -15,7 +15,7 @@ namespace Blog_Page.Models
             : base(options)
         {
 
-           // Database.EnsureDeleted();
+           //Database.EnsureDeleted();
             Database.EnsureCreated();
 
 
