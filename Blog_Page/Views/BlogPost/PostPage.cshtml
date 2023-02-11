@@ -1,24 +1,26 @@
-﻿@using Blog_Page.ViewModel
-@{
-
-}
-@*@model Blog_Page.Models.BlogPost*@
-@model BlogPageComment
+﻿@using Blog_Page.Models
+@model BlogPost
 
 
-    <h1>@Model.blogPost.Comments</h1>  <h1> @Model.blogPost.Author </h1>
+    <h3>  </h3>  <h1>Author : @Model.Author </h1>
  
   <hr>
   <main>
-    <p>@Model.blogPost.Content</p>
+    <p>@Model.Content</p>
   </main>
   <hr>
   <footer>
     <h3>Comments:</h3>
    
+     <form asp-controller="BlogPost" asp-action="PostPage"  method="post"  >
+      <textarea rows="4" cols="50" name = "Text" placeholder="Leave a comment"></textarea>
+      <br><br>
+      <input type="hidden" name="Id" value="@Model.Id">
+      <input type="submit"  value="Submit" >
+    </form>
 
 
-       @await Component.InvokeAsync("PageContentGenerator",new {postid = Model.blogPost.Id})
+       @await Component.InvokeAsync("PageContentGenerator",new {postid = Model.Id})
 
         @*@foreach (var comment in Model.comments)
         {
@@ -35,11 +37,6 @@
     
 
 
-    <form asp-controller="BlogPost" asp-action="PostPage"  method="post"  >
-      <textarea rows="4" cols="50" name = "Text" placeholder="Leave a comment"></textarea>
-      <br><br>
-      <input type="hidden" name="Id" value="@Model.blogPost.Id">
-      <input type="submit"  value="Submit" >
-    </form>
+   
   </footer>
 

@@ -95,7 +95,7 @@ namespace Blog_Page.Controllers
 
             };
 
-            return PartialView("PostPage", blogPageComment);
+            return PartialView("PostPage", Post);
         }
 
 
@@ -132,7 +132,7 @@ namespace Blog_Page.Controllers
 
             };
 
-            return PartialView("PostPage", blogPageComment);
+            return PartialView("PostPage", Post);
         }
 
 
@@ -161,9 +161,11 @@ namespace Blog_Page.Controllers
         [HttpPost]
         public async Task<IActionResult> RepliesCreate(string Id, string Text,string repliesId)
         {
-            var Post = _blogPageContext.BlogPosts.FirstOrDefault(c => c.Id == Id);
+            
             var comments = await _blogPageContext.Comments.Where(c => c.PostId == Id).ToListAsync();
             var comment = await _blogPageContext.Comments.FirstOrDefaultAsync(c => c.PostId == Id);
+            var Post = _blogPageContext.BlogPosts.FirstOrDefault(c => c.Id == Id);
+          
             //var replise = await _blogPageContext.Comments.Where(w => w. )
             BlogPageComment blogPageComment = new BlogPageComment
             {
@@ -187,6 +189,7 @@ namespace Blog_Page.Controllers
             await _blogPageContext.SaveChangesAsync();
 
 
+            // return PartialView("PostPage", Post);
             return RedirectToAction("Index", "Home");
         }
 
